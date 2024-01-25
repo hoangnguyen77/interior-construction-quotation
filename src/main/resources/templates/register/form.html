@@ -51,7 +51,7 @@
                 <span th:text="${my_error}"></span>
             </div>
             <div>
-                <input type="text" th:field="*{username}" placeholder="Tên đăng nhập (*)" class="form-control"/>
+                <input type="text" th:field="*{username}" placeholder="Tên đăng ký (*)" class="form-control"/>
                 <span th:if="${#fields.hasErrors('username')}">
                     <ul>
                         <li th:each="e: ${#fields.errors('username')}" th:text="${e}" style="list-style: none; color: red"></li>
