@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Detail</title>
+</head>
+<body>
+<h2 th:text="${blog.title}"></h2>
+<p th:text="${blog.content}"></p>
+<p th:text="${blog.createdDate}"></p>
+
+
+<h3>Related blog</h3>
+<ul>
+    <li th:each="relatedBlog : ${relatedBlogs}">
+
+        <a th:href="@{'/blogs/' + ${relatedBlog.id}}"><span th:text="${relatedBlog.id}"></span></a>
+    </li>
+</ul>
+</body>
+</html>
