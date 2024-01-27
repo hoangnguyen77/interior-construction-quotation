@@ -12,6 +12,7 @@
 <body>
 <div class="container">
     <h2 class="blog-title">Blog List</h2>
+    <a href="/blogs/add" class="btn btn-primary">Add Blog</a>
     <div class="list-group">
         <a th:each="blog : ${blogs}" th:href="@{'/blogs/' + ${blog.id}}" class="list-group-item list-group-item-action">
             <h5 class="mb-1" th:text="${blog.title}"></h5>
