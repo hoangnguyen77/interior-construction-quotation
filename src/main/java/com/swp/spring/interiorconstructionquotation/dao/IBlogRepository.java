@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface IBlogRepository extends JpaRepository<Blog,Long> {
-List<Blog> findByCategoryId(Long categoryId);
+public interface IBlogRepository extends JpaRepository<Blog,Integer> {
+List<Blog> findByCategoryId(Integer categoryId);
 }

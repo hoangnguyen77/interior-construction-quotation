@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "blogs")
@@ -18,15 +15,12 @@ import java.util.List;
 @NoArgsConstructor
 public class Blog {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    private Long categoryId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private Integer categoryId;
     private String title;
-
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 10000)
     private String content;
-
-    @ElementCollection
-    private List<String> imageUrls;
+    private String imageName;
     private LocalDateTime createdDate;
 }

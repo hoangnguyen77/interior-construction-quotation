@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,18 +18,28 @@ public class BlogController {
     private BlogService blogService;
     @GetMapping
     public String viewAllBLogs(Model model){
+        //get list of all blog id
         List<Blog> blogs = blogService.getAllBlogs();
         model.addAttribute("blogs", blogs);
         return "blog/blogList";
     }
     @GetMapping("/{id}")
-    public String viewBlogDetail(@PathVariable Long id, Model model){
+    public String viewBlogDetail(@PathVariable Integer id, Model model){
+        //get blog id for view
         Blog blog = blogService.getBlogById(id);
-        List<Blog> relatedBlogs = blogService.getRelatedBlogs(blog.getCategoryId());
-
-        model.addAttribute("blog",blog);
-        model.addAttribute("relatedBlogs", relatedBlogs);
-        return  "blog/blogDetail";
+        //if blog id exist
+        if(blog != null){
+            //get list related blog by category id
+            List<Blog> relatedBlogs = blogService.getRelatedBlogs(blog.getCategoryId());
+            //remove current view blog out of the related list
+            relatedBlogs.remove(blog);
+            //model attribute
+            model.addAttribute("blog",blog);
+            model.addAttribute("relatedBlogs", relatedBlogs);
+            return  "blog/blogDetail";
+        } else {
+            return "error/404";
+        }
     }
 
 

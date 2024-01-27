@@ -5,9 +5,7 @@ import com.swp.spring.interiorconstructionquotation.entity.Blog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,24 +20,30 @@ public class BlogService implements IBlogService{
     }
 
     @Override
-    public Blog getBlogById(Long id) {
+    public Blog getBlogById(Integer id) {
         return blogRepository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Blog> getRelatedBlogs(Long id) {
-        Blog blog = blogRepository.findById(id).orElse(null);
-        if(blog == null){
-            return Collections.emptyList();
-        }
-        return blogRepository.findByCategoryId(blog.getCategoryId());
+    public List<Blog> getRelatedBlogs(Integer id) {
+        return blogRepository.findByCategoryId(id);
     }
 
     @Override
-    public Blog save(Blog blog) {
+    public Blog createBlog(Blog blog) {
         if (blog.getId() == null){
             blog.setCreatedDate(LocalDateTime.now());
         }
         return blogRepository.save(blog);
+    }
+
+    @Override
+    public Blog updateBlog(Blog blog, Integer id) {
+        return null;
+    }
+
+    @Override
+    public void deleteBlog(Integer id) {
+
     }
 }
