@@ -62,7 +62,6 @@ public class RegisterController {
         user.setFirstName(registerUser.getFirstName());
         user.setLastName(registerUser.getLastName());
         user.setEmail(registerUser.getEmail());
-        user.setPhonenumber(registerUser.getPhonenumber());
         Role defaultRole = iRoleRepository.findByName("ROLE_CUSTOMER");
         Collection<Role> roles = new ArrayList<>();
         roles.add(defaultRole);
