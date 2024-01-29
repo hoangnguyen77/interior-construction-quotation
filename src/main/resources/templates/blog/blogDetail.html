@@ -10,10 +10,16 @@
     </style>
 </head>
 <body>
+<div th:replace="header :: header"></div>
 <div class="container">
     <h2 th:text="${blog.title}"></h2>
     <p class="blog-content" th:text="${blog.content}"></p>
     <p th:text="${blog.createdDate}"></p>
+
+    <!-- Button to delete the blog -->
+    <form action="#" th:action="@{/blogs/delete/{id}(id=${blog.id})}" method="post" class="d-inline">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
 
     <h3>Related Blogs</h3>
     <div class="row">

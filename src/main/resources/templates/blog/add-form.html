@@ -5,6 +5,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="header :: header"></div>
 <div class="container">
     <h2>Add Blog</h2>
     <form action="#" th:action="@{/blogs/add}" th:object="${blog}" method="post">

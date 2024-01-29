@@ -3,6 +3,8 @@ package com.swp.spring.interiorconstructionquotation.service;
 import com.swp.spring.interiorconstructionquotation.dao.IBlogRepository;
 import com.swp.spring.interiorconstructionquotation.entity.Blog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -44,6 +46,6 @@ public class BlogService implements IBlogService{
 
     @Override
     public void deleteBlog(Integer id) {
-
+        blogRepository.deleteById(id);
     }
 }
