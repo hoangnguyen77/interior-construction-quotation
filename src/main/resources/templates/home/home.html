@@ -13,11 +13,20 @@
                 <h4>Trang chủ</h4>
             </div>
             <div class="col-sm-6">
-                Welcome <b><span sec:authentication="principal.username"></span></b>,
-                <span sec:authentication="principal.authorities"></span>
-                <form action="#" th:action="@{/logout}" method="POST" >
-                    <input type="submit" class="btn btn-info" value="Đăng xuất">
-                </form>
+                <div th:if="${session.user != null}">
+                    <!-- Nếu tồn tại, hiển thị chào mừng với tên người dùng -->
+                    Welcome <b><span th:text="${session.user.getLastName()}"></span></b>
+                    <form action="#" th:action="@{/logout}" method="POST" >
+                        <input type="submit" class="btn btn-info" value="Đăng xuất">
+                    </form>
+                </div>
+                <!-- Nếu không tồn tại, hiển thị chào mừng với Guest và nút Login -->
+                <div th:unless="${session.user != null}">
+                    Welcome Guest
+                    <form action="/showLoginPage" method="GET">
+                        <button type="submit" class="btn btn-info">Login</button>
+                    </form>
+                </div>
             </div>
         </div>
         <hr/>
