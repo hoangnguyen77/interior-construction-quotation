@@ -71,7 +71,7 @@ public class RegisterController {
         iUserService.save(user);
 
         //alert
-        session.setAttribute("myuser", user);
+        session.setAttribute("user", user);
 
         return "register/confirmation";
     }
