@@ -1,0 +1,7 @@
+Create entities mapping with DB base on table in ERD:
+
+- detail_product
+- type_room
+- category_product
+- type_product
+- product_image
