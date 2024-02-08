@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Header</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -29,15 +29,21 @@
                         <a class="nav-link" href="/blogs">Blog List</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/reset-password"> changepassword </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/about-us">About Us</a>
                     </li>
+                    <!-- Add the link to the Change Password page -->
+
                 </ul>
             </div>
             Welcome <b><span sec:authentication="principal.username"></span></b>,
             <span sec:authentication="principal.authorities"></span>
-            <form action="#" th:action="@{/logout}" method="POST" >
+            <form action="#" th:action="@{/logout}" method="POST">
                 <input type="submit" class="btn btn-info" value="Đăng xuất">
             </form>
+
         </div>
     </nav>
 </div>

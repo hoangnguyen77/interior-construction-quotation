@@ -4,9 +4,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.sql.Blob;
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -25,6 +29,8 @@ public class User{
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\\S+$).*$",
             message = "Mật khẩu cần chứa ít nhất một chữ số và một kí tự đặc biệt")
     private String password;
+
+
     @Column(name = "first_name")
     @NotBlank(message = "Thông tin bắt buộc")
     private String firstName;
@@ -40,6 +46,9 @@ public class User{
             message = "Số điện thoại không hợp lệ")
     private String phonenumber;
 
+    @Column(columnDefinition = "TIMESTAMP")
+
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -50,6 +59,7 @@ public class User{
 
     public User() {
     }
+    @Builder
 
     public User(Long id, String username, String password, String firstName, String lastName, String email, String phonenumber, Collection<Role> roles) {
         this.id = id;
@@ -60,7 +70,9 @@ public class User{
         this.email = email;
         this.phonenumber = phonenumber;
         this.roles = roles;
+
     }
+
 
     public User(String username, String password, String firstName, String lastName, String email, String phonenumber, Collection<Role> roles) {
         this.username = username;
@@ -79,6 +91,13 @@ public class User{
         this.lastName = lastName;
         this.email = email;
         this.phonenumber = phonenumber;
+
+    }
+
+    public User(String username, String password, List<GrantedAuthority> authorities) {
+        this.username=username;
+        this.password=password;
+
     }
 
     public Long getId() {
@@ -145,4 +164,5 @@ public class User{
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
 }
