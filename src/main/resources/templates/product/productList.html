@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Products List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .blog-title {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="container">
+    <h1 class="text-center">Our Products</h1>
+    <div class="row">
+        <div th:each="product : ${products}" class="col-md-4">
+            <a th:href="@{/products/{productId}(productId=${product.id})}" class="card mb-4 shadow-sm text-decoration-none">
+                <img class="card-img-top" th:if="${product.images.size() > 0}" th:src="${product.images[0].imageUrl}" alt="Product Image"/>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text" th:text="${product.description}"></p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

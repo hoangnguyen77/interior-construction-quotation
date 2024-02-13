@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Product Images -->
+        <div class="col-md-6">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Iterate over product images -->
+                    <div th:each="image, iterStat : ${product.images}" class="carousel-item" th:classappend="${iterStat.index == 0} ? 'active'">
+                        <img class="d-block w-100" th:src="${image.imageUrl}" th:alt="${'Image ' + iterStat.index}">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <!-- Product Information -->
+        <div class="col-md-6">
+            <h2 th:text="${product.name}"></h2>
+            <p><strong>Width:</strong> <span th:text="${product.width}"></span></p>
+            <p><strong>Height:</strong> <span th:text="${product.height}"></span></p>
+            <p><strong>Length:</strong> <span th:text="${product.length}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${product.description}"></span></p>
+            <p><strong>Price:</strong> <span th:text="${product.unitPrice}"></span></p>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
